@@ -12,7 +12,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-// Importação correta dos teus componentes de arquitetura modular
+
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import StatsSection from '@/components/StatsSection';
@@ -23,13 +23,13 @@ import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#F8FAFC] selection:bg-emerald-100">
-      {/* 1. NAVEGAÇÃO PREMIUM */}
+   
       <Navbar />
       
-      {/* 2. HERO SECTION COM BUSCA */}
+ 
       <Hero />
 
-      {/* 3. GRID DE MICRO-SERVIÇOS (Paleta integrada com Verde e Lilás) */}
+      {/* 3. GRID DE MICRO-SERVIÇOS*/}
       <section className="py-12 px-6">
         <p className="text-slate-400 uppercase tracking-widest text-[11px] font-bold text-center mb-4">
           Micro-serviços ao seu dispor
@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. HOSPITAIS EM DESTAQUE (Com Hover em Verde Médico) */}
+      {/* 4. HOSPITAIS EM DESTAQUE  */}
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-12">

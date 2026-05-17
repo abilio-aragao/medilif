@@ -66,7 +66,7 @@ export default function AgendamentoModal({ hospital, onClose }: AgendamentoModal
           </button>
         </div>
 
-        {/* Corpo com Scroll */}
+        {/* Corpo */}
         <div className="overflow-y-auto p-6 md:p-8 custom-scrollbar">
           {isSubmitted ? (
             <div className="py-12 text-center">

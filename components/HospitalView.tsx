@@ -7,13 +7,12 @@ import {
   Calendar, MessageCircle, ArrowLeft, Map as MapIcon 
 } from 'lucide-react';
 
-// Importa o teu componente de agendamento
 import AgendamentoModal from '@/components/AgendamentoModal'; 
-// Importação única e oficial do Tipo do Hospital
+
 import { Hospital } from '@/lib/data';
 
 interface HospitalViewProps {
-  hospital: Hospital; // Isto garante que todas as propriedades, incluindo 'specialties', existam aqui
+  hospital: Hospital; 
   onClose: () => void;
 }
 
@@ -23,7 +22,7 @@ export default function HospitalView({ hospital, onClose }: HospitalViewProps) {
 
   if (!hospital) return null;
 
-  // CORREÇÃO: Adicionado o '$' que faltava para a interpolação da string funcionar no URL do mapa
+
   const publicMapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(hospital.name + ' ' + hospital.location)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (

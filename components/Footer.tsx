@@ -25,12 +25,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-white border-t border-slate-200/60 font-sans pt-20 pb-10 px-6 text-slate-500 relative overflow-hidden">
-      {/* Detalhe de gradiente sutil no topo do footer */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-purple-300 to-transparent opacity-50" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-1px bg-linear-to-r from-transparent via-purple-300 to-transparent opacity-50" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 items-start">
         
-        {/* Bloco 1: BRANDING (Ocupa 4 colunas na grelha) */}
+        {/* Bloco 1: BRANDING */}
         <div className="flex flex-col gap-4 lg:col-span-4">
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 flex items-center justify-center overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-1.5">
@@ -71,7 +70,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bloco 2: EXPLORAR (Ocupa 2 colunas) */}
+        {/* Bloco 2: EXPLORAR*/}
         <div className="lg:col-span-2 lg:pl-4">
           <h4 className="text-slate-900 font-black text-xs uppercase tracking-widest mb-6">Explorar</h4>
           <ul className="space-y-3">
@@ -86,7 +85,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Bloco 3: SUPORTE (Ocupa 2 colunas) */}
+        {/* Bloco 3: SUPORTE  */}
         <div className="lg:col-span-2">
           <h4 className="text-slate-900 font-black text-xs uppercase tracking-widest mb-6">Suporte</h4>
           <ul className="space-y-3">
@@ -100,7 +99,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Bloco 4: CONTACTOS OFICIAIS (Ocupa 4 colunas) */}
+        {/* Bloco 4: CONTACTOS OFICIAIS*/}
         <div className="lg:col-span-4 bg-slate-50/50 border border-slate-100 p-6 rounded-3xl">
           <h4 className="text-slate-900 font-black text-xs uppercase tracking-widest mb-5">Canais de Atendimento</h4>
           <ul className="space-y-4">

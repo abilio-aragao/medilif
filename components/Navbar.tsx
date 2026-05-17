@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link'; // Importado para navegação interna SPA
+import Link from 'next/link'; 
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Menu, X, Home, Building2, Stethoscope, Pill, 
@@ -16,7 +16,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Mapeamento correto dos caminhos de pasta criados no Next.js
+
   const menuItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Hospitais', href: '../hospitais', icon: Building2 },
@@ -56,7 +56,7 @@ export default function Navbar() {
           <div className="max-w-7xl mx-auto">
             <div className="glass bg-white/80 backdrop-blur-md rounded-[2rem] border border-white/50 shadow-xl px-8 py-3 flex items-center justify-between">
               
-              {/* LOGO LINKADO PARA A HOME */}
+              {/* LOGO*/}
               <Link href="/" className="flex items-center gap-3 group cursor-pointer">
                 <div className="w-14 h-14 flex items-center justify-center overflow-hidden rounded-xl transition-transform duration-300 group-hover:scale-105">
                   <Image 

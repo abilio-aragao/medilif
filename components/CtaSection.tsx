@@ -15,7 +15,7 @@ export default function CtaSection() {
             A sua saúde merece o melhor cuidado
           </h2>
           <p className="text-emerald-50 text-base md:text-lg mb-10 font-medium max-w-xl mx-auto opacity-90">
-            Junte-se à plataforma médica que está a revolucionar o acesso à saúde em Luanda de forma rápida e segura.
+            Junte-se à plataforma médica que está a revolucionar o acesso à saúde em Luanda de forma rápida.
           </p>
           <button className="bg-white text-emerald-700 hover:text-purple-700 px-10 py-4.5 rounded-2xl font-bold transition-all shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] flex items-center gap-2 mx-auto active:scale-95 text-sm md:text-base">
             Começar Agora <ArrowRight size={16} />

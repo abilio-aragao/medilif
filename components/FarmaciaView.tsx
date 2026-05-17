@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, MapPin, Star, ShieldCheck, ShoppingBag, Plus, Minus, CheckCircle2 } from 'lucide-react';
+import { X, MapPin, Star, ShieldCheck, ShoppingBag, Plus, Minus, CheckCircle2, CreditCard } from 'lucide-react';
 import { Farmacia, Medicamento, CATEGORIAS_FARMACIA } from '@/lib/data';
 
 interface FarmaciaViewProps {
@@ -18,6 +18,8 @@ interface ItemCarrinho {
 export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
   const [selectedCat, setSelectedCat] = useState('todos');
   const [carrinho, setCarrinho] = useState<ItemCarrinho[]>([]);
+  const [formaPagamentoEscolhida, setFormaPagamentoEscolhida] = useState<string>('');
+  const [erroPagamento, setErroPagamento] = useState(false);
   const [compraConcluida, setCompraConcluida] = useState(false);
 
   // Filtrar o stock da farmácia por categoria
@@ -25,7 +27,7 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
     selectedCat === 'todos' ? true : med.category === selectedCat
   );
 
-  // Funções do Carrinho
+  // Funções de Gestão do Carrinho
   const adicionarAoCarrinho = (med: Medicamento) => {
     setCarrinho(prev => {
       const existe = prev.find(item => item.medicamento.id === med.id);
@@ -46,7 +48,27 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
     }).filter(Boolean) as ItemCarrinho[]);
   };
 
+  // Validação antes de avançar para o ecrã de sucesso
+  const lidarComFinalizacao = () => {
+    if (!formaPagamentoEscolhida) {
+      setErroPagamento(true);
+      return;
+    }
+    setErroPagamento(false);
+    setCompraConcluida(true);
+  };
+
   const totalPreco = carrinho.reduce((acc, item) => acc + (item.medicamento.price * item.quantity), 0);
+
+  // Função auxiliar para estilizar as caixas de pagamento ao clicar (Peer Class)
+  const getCorMetodo = (metodo: string) => {
+    switch (metodo.toLowerCase()) {
+      case 'multicaixa': return 'peer-checked:border-blue-500 peer-checked:bg-blue-50/50';
+      case 'express': return 'peer-checked:border-emerald-500 peer-checked:bg-emerald-50/50';
+      case 'iban': return 'peer-checked:border-purple-500 peer-checked:bg-purple-50/50';
+      default: return 'peer-checked:border-amber-500 peer-checked:bg-amber-50/50';
+    }
+  };
 
   return (
     <motion.div 
@@ -65,7 +87,7 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
         
         {/* LADO ESQUERDO: Catálogo de Produtos da Farmácia */}
         <div className="flex-1 h-full overflow-y-auto pb-12">
-          {/* Banner */}
+          {/* Banner Principal */}
           <div className="relative h-64 w-full bg-slate-950">
             <img src={farmacia.image} className="w-full h-full object-cover brightness-[0.3]" alt={farmacia.name} />
             <button onClick={onClose} className="absolute top-6 left-6 bg-white/10 text-white p-3 rounded-full hover:bg-white/20 transition-all border border-white/20 cursor-pointer z-20">
@@ -81,7 +103,7 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
             </div>
           </div>
 
-          {/* Filtros Internos por Categoria de Remédio */}
+          {/* Filtros por Categoria de Medicamento */}
           <div className="p-8">
             <h3 className="text-lg font-black text-slate-900 mb-4">Departamentos da Farmácia</h3>
             <div className="flex flex-wrap gap-3 mb-8">
@@ -100,7 +122,7 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
               ))}
             </div>
 
-            {/* Grid de Stock */}
+            {/* Lista/Grid de Stock Disponível */}
             <h3 className="text-lg font-black text-slate-900 mb-6">Medicamentos Disponíveis</h3>
             <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
               {medicamentosFiltrados.map((med) => (
@@ -146,38 +168,101 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
                 <p className="text-xs text-slate-400 mt-1">Adicione medicamentos ao lado para comprar.</p>
               </div>
             ) : (
-              carrinho.map((item) => (
-                <div key={item.medicamento.id} className="flex items-center justify-between bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                  <div className="max-w-[60%]">
-                    <h5 className="font-bold text-slate-900 text-xs truncate">{item.medicamento.name}</h5>
-                    <p className="text-xs font-black text-emerald-600 mt-0.5">{(item.medicamento.price * item.quantity).toLocaleString()} Kz</p>
-                  </div>
-                  <div className="flex items-center gap-2.5 bg-white border border-slate-200 rounded-xl p-1">
-                    <button onClick={() => alterarQuantidade(item.medicamento.id, -1)} className="p-1 text-slate-500 hover:bg-slate-100 rounded-lg"><Minus size={12} /></button>
-                    <span className="text-xs font-black text-slate-900 w-4 text-center">{item.quantity}</span>
-                    <button onClick={() => adicionarAoCarrinho(item.medicamento)} className="p-1 text-slate-500 hover:bg-slate-100 rounded-lg"><Plus size={12} /></button>
-                  </div>
+              <>
+                {/* Lista de Produtos do Carrinho */}
+                <div className="space-y-3">
+                  {carrinho.map((item) => (
+                    <div key={item.medicamento.id} className="flex items-center justify-between bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                      <div className="max-w-[60%]">
+                        <h5 className="font-bold text-slate-900 text-xs truncate">{item.medicamento.name}</h5>
+                        <p className="text-xs font-black text-emerald-600 mt-0.5">{(item.medicamento.price * item.quantity).toLocaleString()} Kz</p>
+                      </div>
+                      <div className="flex items-center gap-2.5 bg-white border border-slate-200 rounded-xl p-1">
+                        <button onClick={() => alterarQuantidade(item.medicamento.id, -1)} className="p-1 text-slate-500 hover:bg-slate-100 rounded-lg"><Minus size={12} /></button>
+                        <span className="text-xs font-black text-slate-900 w-4 text-center">{item.quantity}</span>
+                        <button onClick={() => adicionarAoCarrinho(item.medicamento)} className="p-1 text-slate-500 hover:bg-slate-100 rounded-lg"><Plus size={12} /></button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))
+
+                {/* Secção Interativa das Formas de Pagamento */}
+                <div className="pt-4 border-t border-slate-100">
+                  <p className="text-xs font-black text-slate-900 mb-3 flex items-center gap-1.5">
+                    <CreditCard size={14} className="text-purple-500" /> Forma de Pagamento da Farmácia
+                  </p>
+                  
+                  {erroPagamento && (
+                    <p className="text-[11px] font-black text-rose-500 mb-2">Por favor, selecione uma opção abaixo.</p>
+                  )}
+
+                  <div className="grid grid-cols-2 gap-2 mb-4">
+                    {farmacia.pagamentos && farmacia.pagamentos.map((metodo, mIdx) => (
+                      <label key={mIdx} className="relative block cursor-pointer">
+                        <input 
+                          type="radio" 
+                          name="metodo_pagamento" 
+                          value={metodo}
+                          checked={formaPagamentoEscolhida === metodo}
+                          onChange={(e) => {
+                            setFormaPagamentoEscolhida(e.target.value);
+                            setErroPagamento(false);
+                          }}
+                          className="sr-only peer" 
+                        />
+                        <div className={`border border-slate-200 text-slate-700 text-xs font-bold p-3 rounded-xl text-center transition-all peer-checked:font-black ${getCorMetodo(metodo)}`}>
+                          {metodo}
+                        </div>
+                      </label>
+                    ))}
+                  </div>
+
+   
+                  <AnimatePresence mode="wait">
+                    {formaPagamentoEscolhida && (
+                      <motion.div 
+                        key={formaPagamentoEscolhida}
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="bg-slate-50 border border-slate-200/60 p-3 rounded-xl text-[11px] text-slate-600 font-medium animate-none"
+                      >
+                        {formaPagamentoEscolhida.toLowerCase() === 'express' && (
+                          <p>📱 <span className="font-black text-emerald-600">Multicaixa Express:</span> Ao finalizar, irá receber uma notificação de pagamento direta no seu telemóvel associado.</p>
+                        )}
+                        {formaPagamentoEscolhida.toLowerCase() === 'multicaixa' && (
+                          <p>💳 <span className="font-black text-blue-600">TPA Multicaixa:</span> O estafeta levará o terminal de pagamento físico (TPA) até à sua casa no ato da entrega.</p>
+                        )}
+                        {formaPagamentoEscolhida.toLowerCase() === 'iban' && (
+                          <p>🏦 <span className="font-black text-purple-600">Transferência (IBAN):</span> Os dados bancários para transferência ser-lhe-ão enviados por SMS após a validação do stock.</p>
+                        )}
+                        {formaPagamentoEscolhida.toLowerCase() === 'numerário' && (
+                          <p>💵 <span className="font-black text-amber-600">Dinheiro Físico:</span> Por favor, tente ter o valor exato em mãos para facilitar o troco ao entregador.</p>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </>
             )}
           </div>
 
-          {/* Rodapé do Carrinho com Botão de Finalização */}
+          {/* Rodapé Fixo do Carrinho */}
           <div className="p-6 bg-slate-50 border-t border-slate-200">
             <div className="flex justify-between items-center mb-4">
               <span className="text-xs font-bold text-slate-500">Total Geral:</span>
-              <span className="text-xl font-black text-slate-900">{totalPreco.toLocaleString()} Kz</span>
+              <span className="text-xl font-black text-slate-900">{totalPreco.toLocaleString()} Kz(s)</span>
             </div>
             <button 
               disabled={carrinho.length === 0}
-              onClick={() => setCompraConcluida(true)}
-              className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-white font-black text-sm py-4 rounded-2xl shadow-lg hover:shadow-cyan-200 transition-all active:scale-[0.98] disabled:from-slate-200 disabled:to-slate-300 disabled:text-slate-400 disabled:shadow-none cursor-pointer"
+              onClick={lidarComFinalizacao}
+              className="w-full bg-linear-to-r from-emerald-500 to-cyan-500 text-white font-black text-sm py-4 rounded-2xl shadow-lg hover:shadow-cyan-200 transition-all active:scale-[0.98] disabled:from-slate-200 disabled:to-slate-300 disabled:text-slate-400 disabled:shadow-none cursor-pointer"
             >
               Confirmar e Comprar Medicamentos
             </button>
           </div>
 
-          {/* Modal de Sucesso da Compra */}
+          {/* Modal/Ecrã de Sucesso da Compra */}
           <AnimatePresence>
             {compraConcluida && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="absolute inset-0 bg-white z-30 p-8 flex flex-col items-center justify-center text-center">
@@ -185,10 +270,17 @@ export default function FarmaciaView({ farmacia, onClose }: FarmaciaViewProps) {
                   <CheckCircle2 size={36} />
                 </div>
                 <h4 className="text-xl font-black text-slate-900">Pedido Confirmado!</h4>
-                <p className="text-slate-400 text-xs mt-2 max-w-xs font-medium">Os teus medicamentos já estão a ser separados e embalados pela **{farmacia.name}**.</p>
+                <p className="text-slate-400 text-xs mt-2 max-w-xs font-medium">Os teus medicamentos já estão a ser separados e embalados pela {farmacia.name}.</p>
+                
+                {/* Exibição da confirmação do método que o utilizador escolheu */}
+                <div className="bg-slate-50 border border-slate-100 p-3 rounded-xl w-full max-w-xs mt-4 text-left">
+                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Pagamento Selecionado</p>
+                  <p className="text-slate-800 font-black text-xs mt-0.5">● Pronto para pagar via {formaPagamentoEscolhida}</p>
+                </div>
+
                 <div className="bg-purple-50 text-purple-700 px-4 py-2 rounded-xl font-bold text-xs mt-4 border border-purple-100">Entrega Estimada: {farmacia.deliveryTime}</div>
                 <button 
-                  onClick={() => { setCompraConcluida(false); setCarrinho([]); onClose(); }}
+                  onClick={() => { setCompraConcluida(false); setCarrinho([]); setFormaPagamentoEscolhida(''); onClose(); }}
                   className="mt-8 text-sm font-black text-slate-900 hover:underline cursor-pointer"
                 >
                   Fechar Janela

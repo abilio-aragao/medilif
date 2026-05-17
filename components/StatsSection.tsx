@@ -24,7 +24,7 @@ export default function StatsSection() {
             <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">{s.label}</p>
           </motion.div>
         ))}
-        {/* Efeito visual de fundo */}
+  
         <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-blue-500/10 to-transparent" />
       </div>
     </section>

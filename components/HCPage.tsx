@@ -47,7 +47,7 @@ export default function HCPage({ type, title, subtitle, heroImage }: HCPageProps
     <main className="min-h-screen bg-slate-50 selection:bg-emerald-100 antialiased overflow-x-hidden text-slate-900">
       <Navbar />
 
-      {/* 1. HERO SECTION - ALTA VISIBILIDADE COM IMAGEM REAL */}
+      {/* 1. HERO SECTION  */}
       <section className="relative min-h-[50vh] md:min-h-[55vh] w-full flex items-center justify-center overflow-hidden bg-slate-900 pt-36 pb-24">
         <div className="absolute inset-0">
           <img src={heroImage} className="w-full h-full object-cover brightness-[0.35]" alt={title} />
@@ -94,7 +94,7 @@ export default function HCPage({ type, title, subtitle, heroImage }: HCPageProps
         </motion.div>
       </section>
 
-      {/* 3. SEÇÃO DE FILTROS (ESPECIALIDADES COM LOOK CLEAN) */}
+      {/* 3. SEÇÃO DE FILTROS  */}
       <section className="max-w-7xl mx-auto px-6 mb-20 relative z-20">
         <div className="bg-white rounded-[3rem] p-8 md:p-10 shadow-sm border border-slate-200/80">
           <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8 gap-4">
@@ -178,7 +178,7 @@ export default function HCPage({ type, title, subtitle, heroImage }: HCPageProps
         )}
       </section>
 
-      {/* 5. EQUIPE MÉDICA (FUNDO ESCURO PREMIUM CUSTOMIZADO) */}
+      {/* 5. EQUIPE MÉDICA */}
       <section className="bg-slate-950 py-28 px-6 relative overflow-hidden border-t border-slate-900">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[150px] -mr-40 -mt-40" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[150px] -ml-40 -mb-40" />
@@ -187,7 +187,7 @@ export default function HCPage({ type, title, subtitle, heroImage }: HCPageProps
           <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8">
             <div className="text-center md:text-left">
               <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-xs font-black uppercase tracking-[0.2em]">
-                Corpo Clínico de Elite
+                Profissionais de Saúde
               </span>
               <h2 className="text-3xl md:text-5xl font-black text-white mt-3 tracking-tighter">
                 Especialistas em Destaque

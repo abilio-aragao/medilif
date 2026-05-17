@@ -30,6 +30,7 @@ export interface Farmacia {
   image: string;
   deliveryTime: string;
   isOpen24h: boolean;
+  pagamentos: string[];
   stock: Medicamento[];
 }
 export const HOSPITAIS_DATA: Hospital[] = [
@@ -272,6 +273,7 @@ export const FARMACIAS_DATA: Farmacia[] = [
     reviews: 412,
     deliveryTime: '20-40 min',
     isOpen24h: true,
+    pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],
     image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600',
     stock: [
       { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1500, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
@@ -287,6 +289,7 @@ export const FARMACIAS_DATA: Farmacia[] = [
     reviews: 298,
     deliveryTime: '30-50 min',
     isOpen24h: false,
+    pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],
     image: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?q=80&w=600',
     stock: [
       { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
@@ -302,6 +305,7 @@ export const FARMACIAS_DATA: Farmacia[] = [
     rating: 4.8,
     reviews: 312,
     deliveryTime: '20-35 min',
+    pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],
     isOpen24h: true,
     image: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?q=80&w=600',
     stock: [
@@ -316,6 +320,7 @@ export const FARMACIAS_DATA: Farmacia[] = [
     rating: 4.6,
     reviews: 189,
     deliveryTime: '30-50 min',
+    pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],
     isOpen24h: false,
     image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600',
     stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
@@ -328,22 +333,23 @@ export const FARMACIAS_DATA: Farmacia[] = [
     rating: 4.9,
     reviews: 520,
     deliveryTime: '15-30 min',
+    pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],
     isOpen24h: true,
     image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600',
     stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
       { id: 'm4', name: 'Ibuprofeno 400mg', price: 1850, category: 'Analgesicos', inStock: false, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=200' },]
   },
-  { id: 'f6', name: 'Farmácia Nova Viana', location: 'Viana, Luanda', rating: 4.5, reviews: 145, deliveryTime: '40-60 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
+  { id: 'f6', name: 'Farmácia Nova Viana', location: 'Viana, Luanda', rating: 4.5, reviews: 145, pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],deliveryTime: '40-60 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
       { id: 'm4', name: 'Ibuprofeno 400mg', price: 1850, category: 'Analgesicos', inStock: false, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=200' },] },
-  { id: 'f7', name: 'Farmácia Central Lobito', location: 'Lobito, Benguela', rating: 4.7, reviews: 210, deliveryTime: '25-40 min', isOpen24h: true, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
+  { id: 'f7', name: 'Farmácia Central Lobito', pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"], location: 'Lobito, Benguela', rating: 4.7, reviews: 210, deliveryTime: '25-40 min', isOpen24h: true, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
       { id: 'm4', name: 'Ibuprofeno 400mg', price: 1850, category: 'Analgesicos', inStock: false, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=200' },] },
-  { id: 'f8', name: 'Farmácia Maravilha Samba', location: 'Samba, Luanda', rating: 4.8, reviews: 367, deliveryTime: '30-45 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
+  { id: 'f8', name: 'Farmácia Maravilha Samba', pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"], location: 'Samba, Luanda', rating: 4.8, reviews: 367, deliveryTime: '30-45 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
       { id: 'm4', name: 'Ibuprofeno 400mg', price: 1850, category: 'Analgesicos', inStock: false, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=200' },] },
-  { id: 'f9', name: 'Farmácia Prenda Saúde', location: 'Samba, Luanda', rating: 4.3, reviews: 98, deliveryTime: '20-35 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [] },
-  { id: 'f10', name: 'Farmácia Luanda Sul', location: 'Viana, Luanda', rating: 4.6, reviews: 223, deliveryTime: '35-55 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
+  { id: 'f9', name: 'Farmácia Prenda Saúde', pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"], location: 'Samba, Luanda', rating: 4.3, reviews: 98, deliveryTime: '20-35 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [] },
+  { id: 'f10', name: 'Farmácia Luanda Sul', pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],location: 'Viana, Luanda', rating: 4.6, reviews: 223, deliveryTime: '35-55 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
       { id: 'm4', name: 'Ibuprofeno 400mg', price: 1850, category: 'Analgesicos', inStock: false, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=200' },] },
-  { id: 'f11', name: 'Farmácia Benguela Premium', location: 'Benguela', rating: 4.9, reviews: 489, deliveryTime: '15-30 min', isOpen24h: true, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [] },
-  { id: 'f12', name: 'Farmácia Multiperfil Morro Bento', location: 'Morro Bento, Luanda', rating: 4.7, reviews: 310, deliveryTime: '25-40 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
+  { id: 'f11', name: 'Farmácia Benguela Premium', pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"],location: 'Benguela', rating: 4.9, reviews: 489, deliveryTime: '15-30 min', isOpen24h: true, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [] },
+  { id: 'f12', name: 'Farmácia Multiperfil Morro Bento',pagamentos: ["Multicaixa", "Express", "IBAN", "Numerário"], location: 'Morro Bento, Luanda', rating: 4.7, reviews: 310, deliveryTime: '25-40 min', isOpen24h: false, image: 'https://images.unsplash.com/photo-1586015555751-63bb77f4322a?q=80&w=600', stock: [ { id: 'm1', name: 'Paracetamol 500mg (20 Comprimidos)', price: 1600, category: 'Analgesicos', inStock: true, image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=200' },
       { id: 'm4', name: 'Ibuprofeno 400mg', price: 1850, category: 'Analgesicos', inStock: false, image: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=200' },] },
 ];
 
