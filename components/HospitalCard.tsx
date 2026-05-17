@@ -62,9 +62,7 @@ export default function HospitalCard({ name, location, rating, reviews, image }:
         </div>
       </div>
 
-      {/* PLACEHOLDER PARA LÓGICA DE AGENDAMENTO:
-          onClick={() => openBookingModal(hospitalId)} 
-      */}
+
     </motion.div>
   );
 }
