@@ -72,14 +72,11 @@ export default function FarmaciasPage() {
             </div>
             <input 
               type="text" 
-              placeholder="Farmácia ou Medicamento em estoque..."
+              placeholder="Digite para ver automáticamente (Farmácia ou Medicamento na farmácia)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 bg-transparent border-none outline-none px-4 py-4 text-slate-900 font-bold placeholder:text-slate-400 text-base md:text-lg"
             />
-            <button className="bg-gradient-to-r from-emerald-500 via-emerald-600 to-cyan-500 text-white font-black px-6 md:px-8 py-3.5 md:py-4 rounded-[2rem] hover:scale-105 transition-all active:scale-95 shadow-lg shadow-emerald-500/20 cursor-pointer text-sm">
-              Ver Stock
-            </button>
           </div>
         </motion.div>
       </section>

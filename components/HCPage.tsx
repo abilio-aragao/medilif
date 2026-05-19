@@ -82,14 +82,12 @@ export default function HCPage({ type, title, subtitle, heroImage }: HCPageProps
             </div>
             <input 
               type="text" 
-              placeholder="Pesquise por nome da unidade médica ou bairro..."
+              placeholder="Digite para filtrar pesquisa (unidade, local)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 bg-transparent border-none outline-none px-4 py-4 text-slate-900 font-bold placeholder:text-slate-400 text-base md:text-lg"
             />
-            <button className="bg-gradient-to-r from-purple-500 via-purple-600 to-cyan-500 text-white font-black px-6 md:px-8 py-3.5 md:py-4 rounded-[2rem] hover:scale-105 transition-all active:scale-95 shadow-lg shadow-purple-500/20 cursor-pointer text-sm">
-              Pesquisar
-            </button>
+  
           </div>
         </motion.div>
       </section>
@@ -100,7 +98,7 @@ export default function HCPage({ type, title, subtitle, heroImage }: HCPageProps
           <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8 gap-4">
             <div>
               <h3 className="text-2xl font-black text-slate-900 tracking-tight">Filtrar por Especialidade</h3>
-              <p className="text-slate-400 font-bold text-xs uppercase tracking-wider mt-0.5">Selecione uma especialidade para refinar as unidades médicas</p>
+              <p className="text-slate-400 font-bold text-xs uppercase tracking-wider mt-0.5">Selecione uma especialidade para refinar as unidades médicas e desça para ver os resultados</p>
             </div>
             {selectedSpecialty && (
               <button 
